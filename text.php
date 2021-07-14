@@ -12,11 +12,10 @@ class text extends base_component implements components_interface {
 			$text = $this -> cfg('contenido','texto');
 			$variables = $this -> _ITE -> funcs -> get_template_variables( $text );
 			if( ! empty( $variables ) ){ 
+				$text = $this -> _ITE -> funcs -> replace_in_template( $text, $_REQUEST );
 				if( isset( $_REQUEST['d'] ) ) {
 					$data = decode( $_REQUEST['d'] );
 					$text = $this -> _ITE -> funcs -> replace_in_template( $text, $data );
-				} else {
-					$text = $this -> _ITE -> funcs -> replace_in_template( $text );
 				}
 			}
 			echo $text;
